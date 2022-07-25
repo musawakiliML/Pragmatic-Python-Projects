@@ -51,4 +51,11 @@ for info in zip(titles, final_prices, tags, total_platforms):
     popular_releases_output.append(resp)
 
 
-print(popular_releases_output)
+# get images links
+# get game link
+
+
+links = new_releases.xpath('//a[@class="tab_item app_impression_tracked"]')
+print(links)
+
+# print(popular_releases_output)
