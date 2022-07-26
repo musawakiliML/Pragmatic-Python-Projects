@@ -23,7 +23,6 @@ for div in tags_divs:
     tags.append(div.text_content())
 
 tags = [tag.split(', ') for tag in tags]
-
 platform_divs = new_releases.xpath('.//div[@class="tab_item_details"]')
 total_platforms = []
 
@@ -55,7 +54,7 @@ for info in zip(titles, final_prices, tags, total_platforms):
 # get game link
 
 
-links = new_releases.xpath('//a[@class="tab_item app_impression_tracked"]')
+links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a[1]')
 print(links)
 
 # print(popular_releases_output)
