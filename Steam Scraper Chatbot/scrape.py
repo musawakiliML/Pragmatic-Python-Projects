@@ -1,5 +1,6 @@
 import requests
 import lxml.html
+import json
 
 # Getting page information, and extracting html document
 html_page = requests.get('https://store.steampowered.com/explore/new/')
@@ -56,7 +57,7 @@ for i in links:
 popular_releases_output = []
 count = 0
 
-for info in zip(titles, final_prices, tags, total_platforms):
+for info in zip(titles, final_prices, tags, total_platforms, game_images, game_links):
     resp = {}
     count = count + 1
     resp['id'] = count
@@ -64,8 +65,12 @@ for info in zip(titles, final_prices, tags, total_platforms):
     resp['price'] = info[1]
     resp['tags'] = info[2]
     resp['platforms'] = info[3]
+    resp['game_icon'] = info[4]
+    resp['game_link'] = info[5]
 
     popular_releases_output.append(resp)
 
-# get tags functions
-# //*[@id="tab_newreleases_content"]/div/a
+
+# save output to json file
+with open("output_file.json", 'w') as file_object:
+    json.dump(popular_releases_output, file_object)
