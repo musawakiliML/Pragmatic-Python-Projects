@@ -54,7 +54,10 @@ for info in zip(titles, final_prices, tags, total_platforms):
 # get game link
 
 
-links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a[1]')
+links = new_releases.xpath('.//*[@id="tab_newreleases_content"]/a[1]')
 print(links)
+
+# for i in links:
+#   print(i)
 
 # print(popular_releases_output)
