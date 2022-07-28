@@ -5,14 +5,15 @@ import lxml.html
 html_page = requests.get('https://store.steampowered.com/explore/new/')
 page_doc = lxml.html.fromstring(html_page.content)
 
+# get popular new releases
 new_releases = page_doc.xpath('//div[@id="tab_newreleases_content"]')[0]
 
-
+# get game title
 titles = new_releases.xpath('.//div[@class="tab_item_name"]/text()')
 final_prices = new_releases.xpath(
     './/div[@class="discount_final_price"]/text()')
 
-
+# get game tags
 tags_divs = new_releases.xpath('.//div[@class="tab_item_top_tags"]')
 tags = []
 
@@ -20,6 +21,8 @@ for div in tags_divs:
     tags.append(div.text_content())
 
 tags = [tag.split(', ') for tag in tags]
+
+# get game platform
 platform_divs = new_releases.xpath('.//div[@class="tab_item_details"]')
 total_platforms = []
 
@@ -31,8 +34,25 @@ for game in platform_divs:
         platforms.remove("hmd_separator")
     total_platforms.append(platforms)
 
-# generate output function
+# get images links
+images_links = new_releases.xpath(
+    '//*[@id="tab_newreleases_content"]/a/div/img')  # /a[1]/div[1]/img
+game_images = []
 
+for x in images_links:
+    image = x.attrib['src']
+    game_images.append(image)
+
+# get game link
+links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a')  # [1]
+game_links = []
+
+for i in links:
+    link = i.attrib['href']
+    game_links.append(link)
+
+
+# generate output function
 popular_releases_output = []
 count = 0
 
@@ -47,20 +67,5 @@ for info in zip(titles, final_prices, tags, total_platforms):
 
     popular_releases_output.append(resp)
 
-
-# get images links
-images_links = new_releases.xpath(
-    '//*[@id="tab_newreleases_content"]/a[1]/div[1]/img')
-for x in images_links:
-    image = x.attrib['src']
-    print(image)
-
-
-# get game link
-links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a[1]')
-
-for i in links:
-    link = i.attrib['href']
-    print(link)
-
 # get tags functions
+# //*[@id="tab_newreleases_content"]/div/a
