@@ -1,6 +1,3 @@
-from cmath import inf
-from hashlib import new
-from platform import platform
 import requests
 import lxml.html
 
@@ -51,13 +48,20 @@ for info in zip(titles, final_prices, tags, total_platforms):
 
 
 # get images links
+images_links = new_releases.xpath(
+    '//*[@id="tab_newreleases_content"]/a[1]/div[1]/img')
+
+for x in images_links:
+    image = x.attrib['src']
+    print(image)
 # get game link
 
 
-links = new_releases.xpath('.//*[@id="tab_newreleases_content"]/a[1]')
+links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a[1]')
 print(links)
 
-# for i in links:
-#   print(i)
+for i in links:
+    link = i.attrib['href']
+    print(link)
 
 # print(popular_releases_output)
