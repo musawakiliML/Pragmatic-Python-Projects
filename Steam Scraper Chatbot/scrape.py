@@ -31,6 +31,7 @@ for game in platform_divs:
         platforms.remove("hmd_separator")
     total_platforms.append(platforms)
 
+# generate output function
 
 popular_releases_output = []
 count = 0
@@ -50,18 +51,16 @@ for info in zip(titles, final_prices, tags, total_platforms):
 # get images links
 images_links = new_releases.xpath(
     '//*[@id="tab_newreleases_content"]/a[1]/div[1]/img')
-
 for x in images_links:
     image = x.attrib['src']
     print(image)
+
+
 # get game link
-
-
 links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a[1]')
-print(links)
 
 for i in links:
     link = i.attrib['href']
     print(link)
 
-# print(popular_releases_output)
+# get tags functions
