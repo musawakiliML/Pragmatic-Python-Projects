@@ -18,7 +18,9 @@ def bot():
     bot_message = bot_response.message()
 
     if incoming_msg == "hello":
+        h = popular_release()
         bot_message.body("Hello, I am Bot!!")
+        bot_message.body(str(len(h)))
 
     return str(bot_response)
 
