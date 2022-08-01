@@ -1,6 +1,7 @@
 # Required libaries
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
+from emoji import emojize as em
 
 # User defined functions
 from scrape import popular_release
@@ -16,11 +17,15 @@ def bot():
     incoming_msg = request.values.get('Body', '').lower()
     bot_response = MessagingResponse()
     bot_message = bot_response.message()
-
-    if incoming_msg == "hello":
-        h = popular_release()
-        bot_message.body("Hello, I am Bot!!")
-        bot_message.body(str(len(h)))
+    command = ['hello', 'hi', 'what do you do', 'start', 'commands']
+    if incoming_msg in command:
+        bot_commands = f"""Hello, I am Steam Bot. I Scrape the Steam Game Store Website to get games and more. I Can you anything on the site just search through my commands and hit me {em(':smile:', language="alias")}.
+        These are my commands:
+        - /get_popular_releases
+        - /get_new_releases
+        """
+        bot_message.body(bot_commands)
+        # bot_message.body(str(len(h)))
 
     return str(bot_response)
 
