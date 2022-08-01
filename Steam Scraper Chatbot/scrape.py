@@ -9,7 +9,7 @@ page_doc = lxml.html.fromstring(html_page.content)
 
 
 def popular_release():
-    '''This Function extracts popular game information from Steam website.
+    ''' This Function extracts popular game information from Steam website.
 
     The functions returns a list containing a dictionary with following keys:values pair
     title: game title
