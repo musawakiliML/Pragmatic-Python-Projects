@@ -1,4 +1,5 @@
 # importing packages
+from email.mime import image
 import requests
 import lxml.html
 import json
@@ -88,8 +89,20 @@ def popular_release():
         popular_releases_output.append(resp)
     return popular_releases_output
 
+# get steam banner image.
+
+
+def get_steam_image():
+    image_request = requests.get(
+        "https://m.media-amazon.com/images/I/81JXr-AQJQL._SL1500_.jpg")
+    if image_request.status_code == 200:
+        return image_request.url
+    else:
+        return None
 
 # save output to json file
+
+
 def save_output_json(data):
     with open("output_file.json", 'w') as file_object:
         json.dump(data, file_object)
