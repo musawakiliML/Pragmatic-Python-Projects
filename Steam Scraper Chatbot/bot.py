@@ -28,7 +28,8 @@ def bot():
         bot_commands = f""" Hello, I am Steam Bot. I Scrape the Steam Game Store Website to get games and more. I Can do anything on the site just search through my commands and hit me {em(':smile:',language='alias')}. 
         These are my commands {em(':robot:',language='alias')}: 
         - /get_popular_releases
-        - /get_new_releases """
+        - /get_new_releases 
+        - /get_"""
 
         bot_message.body(bot_commands)
         bot_message.media(get_steam_image())

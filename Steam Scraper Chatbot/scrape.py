@@ -100,6 +100,67 @@ def get_steam_image():
     else:
         return None
 
+# To-Do :
+    # Steam Home page
+        # New Releases
+        # Specials
+        # Free to play
+        # SPECIAL OFFERS
+        # POPULAR TAGS
+        # FEATURED & RECOMMENDED
+        #POPULAR VR GAMES
+    # Top Selling Game
+    # FEATURED DLC
+    # New and Trending
+    # Top Sellers
+    # Whats being played
+    # Upcoming
+    # RECOMMENDED SPECIALS
+    # Games Streaming Now
+    # UNDER $10 USD
+    # UPDATES AND OFFERS
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # save output to json file
 
 
