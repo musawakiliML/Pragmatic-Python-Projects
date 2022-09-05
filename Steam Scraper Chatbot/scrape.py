@@ -1,5 +1,4 @@
 # importing packages
-from email.mime import image
 import requests
 import lxml.html
 import json
@@ -108,7 +107,7 @@ def get_steam_image():
         # SPECIAL OFFERS
         # POPULAR TAGS
         # FEATURED & RECOMMENDED
-        #POPULAR VR GAMES
+        # POPULAR VR GAMES
     # Top Selling Game
     # FEATURED DLC
     # New and Trending
@@ -119,46 +118,6 @@ def get_steam_image():
     # Games Streaming Now
     # UNDER $10 USD
     # UPDATES AND OFFERS
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # save output to json file
