@@ -1,14 +1,30 @@
-import lxml.html
 import requests
 
 
-html_page = requests.get(
-    "https://www.sc.com/ng/important-information/daily-card-exchange-rates/")
-page_info = lxml.html.fromstring(html_page.content)
+def get_info(from_, to, amount) -> dict:
+    #To = 'NGN'
+    #From = 'GHS'
+    #Amount = 10
 
-#page_title = page_info.xpath("/html/body/embed/")
-page = page_info.xpath('//*[@id="content"]/embed/@original-url')
-title = page_info.xpath('/html/head/title/text()')
-# print(page_title)
-print(page)
-print(title)
+    url = f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from_}&amount={amount}"
+
+    payload = {}
+    headers = {
+        "apikey": "u1mKpviY5eVaWwTp6bhv2ytEpiE8xPSZ"
+    }
+
+    response = requests.request(
+        "GET", url,          headers=headers, data=payload)
+
+    status_code = response.status_code
+    result = response.json()
+
+    to_currency = result['query']['to']
+    from_currency = result['query']['from']
+    amount_currency = result['query']['amount']
+
+    rate = result['info']['rate']
+
+    output = {"Exchange": [to_currency, from_currency, amount_currency, rate]}
+
+    return output
