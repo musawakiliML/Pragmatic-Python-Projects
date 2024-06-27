@@ -12,4 +12,5 @@ The projects will be an improvement to the original inform of a challenge.
 | --- | --------------------------------------- | ---- | ----------- |
 | 1.  | Scraping Steam Using lxml and a Chatbot |      |             |
 | 2.  | Jumia Ecommerce Scraper Bot             |      |             |
-| 3.  | Github Whatsapp Bot                     |      |             |
+| 3.  | Github Bot                              |      |             |
+| 4.  | FIFA World Cup Bot                      |      |             |

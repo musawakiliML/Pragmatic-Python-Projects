@@ -20,15 +20,16 @@ def popular_release():
     image_link: link to image of the game
      '''
 
-    # get popular new releases
+    # Get popular new releases
     new_releases = page_doc.xpath('//div[@id="tab_newreleases_content"]')[0]
 
-    # get game title
+    # Get all popular game titles
     titles = new_releases.xpath('.//div[@class="tab_item_name"]/text()')
+    # Get all game prices
     final_prices = new_releases.xpath(
         './/div[@class="discount_final_price"]/text()')
 
-    # get game tags
+    # Get game tags
     tags_divs = new_releases.xpath('.//div[@class="tab_item_top_tags"]')
     tags = []
 
@@ -55,26 +56,29 @@ def popular_release():
     images_links = new_releases.xpath(
         '//*[@id="tab_newreleases_content"]/a/div/img')  # /a[1]/div[1]/img
     game_images = []
+    
 
     # loop through the images link tag and extract the src attribute
     for x in images_links:
         image = x.attrib['src']
         game_images.append(image)
-
+    print(game_images)    
     # get game link
     links = new_releases.xpath('//*[@id="tab_newreleases_content"]/a')  # [1]
     game_links = []
+    
 
     # loop through the game links and extract the href attribute
     for i in links:
         link = i.attrib['href']
         game_links.append(link)
-
+    print(game_links)
     # generate output function
     popular_releases_output = []
     count = 0
     # using zip function to create a list of all the the information we need for a particular game.
     for info in zip(titles, final_prices, tags, total_platforms, game_images, game_links):
+        print(game_links)
         resp = {}
         count = count + 1
         resp['id'] = count
@@ -89,8 +93,6 @@ def popular_release():
     return popular_releases_output
 
 # get steam banner image.
-
-
 def get_steam_image():
     image_request = requests.get(
         "https://m.media-amazon.com/images/I/81JXr-AQJQL._SL1500_.jpg")
@@ -122,7 +124,10 @@ def get_steam_image():
 
 # save output to json file
 
-
 def save_output_json(data):
     with open("output_file.json", 'w') as file_object:
         json.dump(data, file_object)
+
+popular_release_data = popular_release()
+print(popular_release_data)
+popular_release_json = save_output_json(popular_release_data)
